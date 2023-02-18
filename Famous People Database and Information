@@ -1,0 +1,56 @@
+/* Create a database of different celeberties and their occupation */
+CREATE TABLE famouspeople (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT,
+    type TEXT);
+  INSERT INTO famouspeople (fullname, type) VALUES ("Adam Sandler", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Jennifer Aniston", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Miley Cyrus", "singer");
+INSERT INTO famouspeople (fullname, type) VALUES ("Brad Pitt", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("JK Rowling", "author");
+INSERT INTO famouspeople (fullname, type) VALUES ("Liam Hemsworth", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Harry Potter", "character");
+INSERT INTO famouspeople (fullname, type) VALUES ("Angelina Jolie", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Katy Perry", "singer");
+INSERT INTO famouspeople (fullname, type) VALUES ("William Shakespeare", "author");
+INSERT INTO famouspeople (fullname, type) VALUES ("Hugh Grant", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Blake Lively", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Ryan Reynolds", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Tom Cruise", "actor");
+INSERT INTO famouspeople (fullname, type) VALUES ("Katie Holmes", "actor");
+
+/* Create table about the celebrites above that have a relationship of some kind to one another */
+CREATE TABLE relationships (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,person2_id INTEGER,
+    relation TEXT);
+INSERT INTO relationships (person1_id, person2_id, relation) VALUES ("4", "8", "partners");
+INSERT INTO relationships (person1_id, person2_id, relation ) VALUES ("3", "6", "partners");
+INSERT INTO relationships (person1_id, person2_id, relation) VALUES ("5", "7", "fictional subject");
+INSERT INTO relationships (person1_id, person2_id, relation) VALUES ("1", "2", "costars");
+INSERT INTO relationships (person1_id, person2_id, relation) VALUES ("12", "13", "partners");
+INSERT INTO relationships (person1_id, person2_id, relation) VALUES ("14", "15", "partners");
+
+/* Create table displaying an exampl of a movie of each actor */
+CREATE TABLE actors (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+person_id INTEGER, movies TEXT);
+INSERT INTO Actors (person_id, movies) VALUES ('1',"Waterboy");
+INSERT INTO Actors (person_id, movies) VALUES ('2', "Along came Polly");
+INSERT INTO Actors (person_id, movies) VALUES ('8', "Mr. and Mrs. Smith");
+INSERT INTO Actors (person_id, movies)  VALUES ('4', "Mr. and Mrs. Smith");
+INSERT INTO Actors (person_id, movies)  VALUES ('11', "Two Weeks Notice");
+INSERT INTO Actors (person_id, movies)  VALUES ('12', "Green Lantern");
+INSERT INTO Actors (person_id, movies)  VALUES ('13', "Green Lantern");
+INSERT INTO Actors (person_id, movies)  VALUES ('14', "Mission Impossible");
+INSERT INTO Actors (person_id, movies)  VALUES ('15', "The Talented Mr. Ripley");
+
+
+/* Select two tables with a JOIN so the query shows a list of only actors. What are the names of just the actors in this database? */
+SELECT fp.fullname,fp.type FROM famouspeople fp JOIN actors a ON fp.id=a.person_id;
+
+/* Show a list of all the actors and their movies */
+SELECT fp.fullname, a.movies FROM famouspeople fp JOIN actors a ON fp.id=a.person_id; 
+
+/* Show the relationship of each actor to one another */
+SELECT a.fullname, b.fullname, x.relation FROM relationships x JOIN famouspeople a ON a.id = x.person1_id JOIN famouspeople b ON b.id = x.person2_id;
