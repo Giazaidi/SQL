@@ -39,5 +39,5 @@ SELECT artist_name, energy, popularity FROM spotifydata GROUP BY artist_name ORD
 --4. What was the highest popularity score by track(s) and artist name(s)?
 SELECT artist_name, track_name, max(popularity) FROM spotifydata GROUP BY artist_name,track_name HAVING max(popularity)=95;
 
---5. What is the average popularity, danceability, and energy by artist and track. 
-SELECT artist_name, track_name, AVG(popularity), AVG(danceability), AVG(energy) FROM spotifydata GROUP BY artist_name,track_name;
+--5. What is the average popularity, danceability, and energy by artist. 
+SELECT artist_name,AVG(popularity), AVG(danceability), AVG(energy) FROM spotifydata GROUP BY track_name;
